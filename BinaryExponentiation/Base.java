@@ -16,6 +16,7 @@ public class Base {
     }
 
     // Iterative method for binary exponentiation
+    // This method uses the property that a^b = (a^(b/2))^2 if b is even, and a^b = a * (a^(b-1)) if b is odd.
     private long powerIterative(long base, long exponent) {
         long result = 1;
         while (exponent > 0) {
@@ -24,7 +25,6 @@ public class Base {
             }
             base *= base;
             exponent /= 2;
-            System.out.printf("Current base: %d, Current exponent: %d, Current result: %d%n", base, exponent, result);
         }
         return result;
     }
