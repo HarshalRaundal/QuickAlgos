@@ -1,0 +1,31 @@
+For a 'P' and 'a' such that 'P' is prime and 'a' is not divisible by 'P', the following holds:
+// a^(P-1) ≡ 1 (mod P)
+
+/**
+ * Fermat's Little Theorem
+ * @param {number} P - A prime number greater than 1.
+ * @param {number} a - An integer not divisible by P.
+ * @returns {boolean} True if a^(P-1) ≡ 1 (mod P), otherwise false.
+ * @throws {Error} If P is not a prime number or if a is divisible by P.
+ */
+function fermatLittleTheorem(P, a) {
+    if (P <= 1 || !Number.isInteger(P) || P % 1 !== 0) {
+        throw new Error("P must be a prime number greater than 1.");
+    }
+    if (a % P === 0) {
+        throw new Error("a must not be divisible by P.");
+    }
+
+    // Calculate a^(P-1) mod P
+    let result = 1;
+    for (let i = 0; i < P - 1; i++) {
+        result = (result * a) % P;
+    }
+
+    return result === 1;
+}
+
+// Time Complexity: O(P)
+// Space Complexity: O(1)
+// Example usage:
+console.log(fermatLittleTheorem(7, 3)); // true, since 3^(7-1) % 7 = 1
